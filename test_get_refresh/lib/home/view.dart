@@ -361,30 +361,44 @@ class HomePage extends StatelessWidget {
           Positioned(
             top: 21.w,
             right: 12.w,
-            child: GestureDetector(
-                onTap: () {
-                  print('aaaaa');
-                  if (context != null) {
-                    print(context);
-                    SmartDialog.showAttach(
-                      targetContext: context,
-                      usePenetrate: true,
-                      clickMaskDismiss: true,
-                      alignment: Alignment.bottomCenter,
-                      builder: (_) {
-                        return Container(
-                            width: 100, height: 100, color: Colors.red);
-                      },
-                    );
-                  }
-                },
-                child: Image.asset(AssetsImages.mineDynamicMoreCover,
-                    width: 24.w, height: 24.w)),
+            child: Builder(builder: (context) {
+              return GestureDetector(
+                  onTap: () {
+                    print('aaaaa');
+                    if (context != null) {
+                      print(context);
+                      SmartDialog.showAttach(
+                        targetContext: context,
+                        usePenetrate: true,
+                        clickMaskDismiss: true,
+                        alignment: Alignment.bottomCenter,
+                        builder: (_) {
+                          return Container(
+                              width: 100, height: 100, color: Colors.red);
+                        },
+                      );
+                    }
+                  },
+                  child: Image.asset(AssetsImages.mineDynamicMoreCover,
+                      width: 24.w, height: 24.w));
+            }),
           ),
         ],
       ),
     );
   }
+
+  /*
+   Builder 是一个非常有用的小部件，它的主要作用是创建一个新的构建上下文 (BuildContext)，这个上下文是独立于父上下文的。它在以下场景中特别有用：
+   在不需要新的方法或小部件的情况下访问 BuildContext： 有时候，您可能需要在某个位置访问 BuildContext，
+   但不希望通过在函数参数中传递或在小部件的属性中传递来传递它。在这种情况下，您可以使用 Builder 将一个新的 BuildContext 引入小部件树，以便在内部使用。
+   在回调或函数内部访问 BuildContext： 一些回调函数或函数内部可能需要访问 BuildContext，例如，onPressed 回调内的操作需要 Navigator.of(context)
+   来导航到新页面。使用 Builder 可以创建一个新的上下文，使得在这些回调内部可以访问到正确的上下文。
+   避免不必要的重建： 当小部件的构建方法需要根据一个 BuildContext 的状态进行重建时，使用 Builder 可以避免不必要的重建。
+   这样，只有包装在 Builder 内部的部分会在新的 BuildContext 下进行重建，而不会影响外部的部分。
+   在您提到的情况下，使用 Builder 的目的是为了创建一个新的构建上下文，以便在其 builder 回调中访问正确的上下文，
+   并在按钮的 onPressed 回调中执行一些操作，如导航。这种方式可以确保在按钮的回调中使用的上下文是正确的，而不会受到包含 Builder 的父上下文的影响。
+   */
 
   Widget _buildAttentionTopic() {
     return Container(
