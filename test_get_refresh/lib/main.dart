@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      initialRoute: RouteGet.home,
+      initialRoute: RouteGet.main,
       getPages: RouteGet.getPages,
       debugShowCheckedModeBanner: false,
       defaultTransition: Transition.rightToLeft,

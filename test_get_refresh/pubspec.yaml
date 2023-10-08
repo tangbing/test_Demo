@@ -40,7 +40,7 @@ dependencies:
   flutter_screenutil: ^5.8.4
 
   # GetX状态管理框架 https://pub.flutter-io.cn/packages/get
-  get: ^4.6.5
+  get: ^4.6.6
   # 图表库
   fl_chart: ^0.63.0
   #十六进制字符串给颜色赋值
